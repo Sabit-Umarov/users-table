@@ -1,10 +1,17 @@
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store'
+import Vue from "vue";
+import App from "./App.vue";
+import store from "./store";
+import vuetify from "./plugins/vuetify";
+import VueMask from "v-mask";
+import Fragment from "vue-fragment";
 
-Vue.config.productionTip = false
+Vue.use(Fragment.Plugin);
+Vue.use(VueMask);
+
+Vue.config.productionTip = false;
 
 new Vue({
   store,
-  render: h => h(App)
-}).$mount('#app')
+  vuetify,
+  render: (h) => h(App),
+}).$mount("#app");
