@@ -3,7 +3,7 @@
     <tr>
       <td :style="indent" class="d-flex align-center">
         <v-icon v-if="depth > 0" light>mdi-subdirectory-arrow-right</v-icon>
-        {{ user.name }}
+        <span class="username">{{ user.name }}</span>
       </td>
       <td>{{ user.phone }}</td>
     </tr>
@@ -33,3 +33,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.username {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+</style>
