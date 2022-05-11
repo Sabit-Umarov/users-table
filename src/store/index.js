@@ -23,18 +23,18 @@ export default new Vuex.Store({
     users: [
       {
         id: 0,
-        name: "Michael Buble",
+        name: "Майкл Бабл",
         phone: "+7 978 785 48 99",
         childs: [],
       },
       {
         id: 1,
-        name: "Katy Perry",
+        name: "Кэти Пэрри",
         phone: "+7 978 785 48 00",
         childs: [
           {
             id: 2,
-            name: "Taylor Swift",
+            name: "Тэйлор Свифт",
             phone: "+7 978 985 48 99",
             childs: [],
           },
@@ -42,7 +42,7 @@ export default new Vuex.Store({
       },
       {
         id: 3,
-        name: "The Weeknd",
+        name: "Викенд",
         phone: "+7 978 785 48 01",
         childs: [],
       },
