@@ -10,7 +10,7 @@
           >Добавить</v-btn
         >
         <ModalUI
-          :title="'Добавление пользователя'"
+          title="Добавление пользователя"
           :isShowModal="isShowModal"
           @handleCloseModal="toggleModal(false)"
         >

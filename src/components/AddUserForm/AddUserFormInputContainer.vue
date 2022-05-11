@@ -27,6 +27,7 @@ export default {
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
+
     @media screen and (max-width: 600px) {
       -webkit-box-align: stretch;
       -ms-flex-align: stretch;
@@ -37,6 +38,7 @@ export default {
       flex-direction: column;
     }
   }
+
   &__label {
     width: 100px;
     padding-right: 20px;

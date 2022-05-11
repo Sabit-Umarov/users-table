@@ -1,8 +1,8 @@
 <template>
   <th class="table-heading text-left" @click="sortTableByKey(sortKey)">
     {{ title }}
-    <v-icon v-if="sortedBy === sortKey || sortedBy === `reversed ${sortKey}`">{{
-      sortedBy === sortKey ? "mdi-arrow-down" : "mdi-arrow-up"
+    <v-icon v-if="isKeysEqual || sortedBy === `reversed ${sortKey}`">{{
+      arrowIcon
     }}</v-icon>
   </th>
 </template>
@@ -16,6 +16,14 @@ export default {
     sortKey: String,
     title: String,
     sortedBy: String,
+  },
+  computed: {
+    isKeysEqual() {
+      return this.sortedBy === this.sortKey;
+    },
+    arrowIcon() {
+      return this.isKeysEqual ? "mdi-arrow-down" : "mdi-arrow-up";
+    },
   },
   methods: {
     ...mapActions(["sortTableByKey"]),

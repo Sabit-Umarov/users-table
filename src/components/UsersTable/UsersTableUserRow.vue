@@ -5,7 +5,7 @@
         <v-icon v-if="depth > 0" light>mdi-subdirectory-arrow-right</v-icon>
         <span class="username">{{ user.name }}</span>
       </td>
-      <td :style="indentColor">{{ user.phone }}</td>
+      <td class="phone">{{ user.phone }}</td>
     </tr>
     <UsersTableUserRow
       v-for="user in childs"
@@ -28,15 +28,7 @@ export default {
   props: ["user", "childs", "depth"],
   computed: {
     indent() {
-      return {
-        "padding-left": `${this.depth * 20 + 16}px`,
-        "background-color": `hsl(320, 0%, ${100 - ((this.depth * 5) % 100)}%)`,
-      };
-    },
-    indentColor() {
-      return {
-        "background-color": `hsl(320, 0%, ${100 - ((this.depth * 5) % 100)}%)`,
-      };
+      return { "padding-left": `${this.depth * 20 + 16}px` };
     },
   },
 };
@@ -49,6 +41,9 @@ export default {
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  color: hsl(hue, saturation, lightness);
+}
+
+.phone {
+  min-width: 200px;
 }
 </style>

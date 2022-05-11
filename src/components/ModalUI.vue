@@ -39,11 +39,13 @@ export default {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+
   @media screen and (max-width: 600px) {
     border-radius: 0;
     height: 100vh;
     width: 100vw;
   }
+
   &__header {
     position: relative;
     display: -webkit-box;
@@ -55,6 +57,7 @@ export default {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+
     @media screen and (max-width: 600px) {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -62,6 +65,7 @@ export default {
       flex-direction: column;
     }
   }
+
   &__close-button {
     position: absolute;
     top: 0;

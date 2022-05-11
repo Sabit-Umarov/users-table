@@ -80,9 +80,8 @@ export default new Vuex.Store({
       state.users = users;
     },
     sortTable(state, key) {
-      key === state.keyTableSortedBy
-        ? (state.keyTableSortedBy = `reversed ${key}`)
-        : (state.keyTableSortedBy = key);
+      state.keyTableSortedBy =
+        key === state.keyTableSortedBy ? `reversed ${key}` : key;
       function sortArray(array) {
         switch (key) {
           case "name":
@@ -95,11 +94,6 @@ export default new Vuex.Store({
               }
               return 0;
             });
-            array.forEach((el) => {
-              if (el.childs) {
-                sortArray(el.childs);
-              }
-            });
             break;
           case "phone":
             array = array.sort((a, b) => {
@@ -109,13 +103,13 @@ export default new Vuex.Store({
                 ? first - second
                 : second - first;
             });
-            array.forEach((el) => {
-              if (el.childs) {
-                sortArray(el.childs);
-              }
-            });
             break;
         }
+        array.forEach((el) => {
+          if (el.childs) {
+            sortArray(el.childs);
+          }
+        });
         return array;
       }
       sortArray(state.users);

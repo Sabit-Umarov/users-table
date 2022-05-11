@@ -1,6 +1,6 @@
 <template>
   <form name="add-new-user">
-    <AddUserFormInputContainer :label="'Имя'">
+    <AddUserFormInputContainer label="Имя">
       <v-text-field
         v-model="user.name"
         light
@@ -10,7 +10,7 @@
         label="Введите имя"
       ></v-text-field>
     </AddUserFormInputContainer>
-    <AddUserFormInputContainer :label="'Телефон'">
+    <AddUserFormInputContainer label="Телефон">
       <v-text-field
         v-mask="'+# ### ### ## ##'"
         v-model="user.phone"
@@ -21,7 +21,7 @@
         label="Введите номер телефона"
       ></v-text-field>
     </AddUserFormInputContainer>
-    <AddUserFormInputContainer :label="'Начальник'">
+    <AddUserFormInputContainer label="Начальник">
       <v-select
         v-model="user.chief"
         :items="chiefs"
@@ -67,8 +67,7 @@ export default {
   },
   computed: mapGetters(["allUsers"]),
   mounted() {
-    let users = this.allUsers;
-    this.getChiefs(users);
+    this.getChiefs(this.allUsers);
     this.user.id = this.chiefs.length + 1;
   },
   methods: {
