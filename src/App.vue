@@ -9,13 +9,13 @@
         <v-btn @click="toggleModal(true)" color="primary" class="mt-4"
           >Добавить</v-btn
         >
-        <ModalUI
+        <ModalWrapper
           title="Добавление пользователя"
           :isShowModal="isShowModal"
           @handleCloseModal="toggleModal(false)"
         >
           <AddUserForm @handleCloseModal="toggleModal(false)" />
-        </ModalUI>
+        </ModalWrapper>
       </v-container>
     </v-main>
   </v-app>
@@ -23,14 +23,14 @@
 
 <script>
 import UsersTable from "@/components/UsersTable/UsersTable.vue";
-import ModalUI from "@/components/ModalUI.vue";
-import AddUserForm from "@/components/AddUserForm/AddUserForm.vue";
+import ModalWrapper from "@/components/UI/ModalWrapper.vue";
+import AddUserForm from "@/components/AddUserForm.vue";
 
 export default {
   name: "App",
   components: {
     UsersTable,
-    ModalUI,
+    ModalWrapper,
     AddUserForm,
   },
   data: () => ({

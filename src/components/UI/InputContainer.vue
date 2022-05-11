@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "AddUserFormInputContainer",
+  name: "InputContainer",
   props: {
     label: String,
   },

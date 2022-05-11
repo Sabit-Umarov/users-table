@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "ModalUI",
+  name: "ModalWrapper",
   props: {
     title: String,
     isShowModal: Boolean,

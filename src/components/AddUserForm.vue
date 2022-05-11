@@ -1,6 +1,6 @@
 <template>
   <form name="add-new-user">
-    <AddUserFormInputContainer label="Имя">
+    <InputContainer label="Имя">
       <v-text-field
         v-model="user.name"
         light
@@ -9,8 +9,8 @@
         outlined
         label="Введите имя"
       ></v-text-field>
-    </AddUserFormInputContainer>
-    <AddUserFormInputContainer label="Телефон">
+    </InputContainer>
+    <InputContainer label="Телефон">
       <v-text-field
         v-mask="'+# ### ### ## ##'"
         v-model="user.phone"
@@ -20,8 +20,8 @@
         outlined
         label="Введите номер телефона"
       ></v-text-field>
-    </AddUserFormInputContainer>
-    <AddUserFormInputContainer label="Начальник">
+    </InputContainer>
+    <InputContainer label="Начальник">
       <v-select
         v-model="user.chief"
         :items="chiefs"
@@ -31,7 +31,7 @@
         outlined
         label="Выбрать начальника"
       ></v-select>
-    </AddUserFormInputContainer>
+    </InputContainer>
     <v-btn
       class="mt-6"
       color="primary"
@@ -48,7 +48,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import AddUserFormInputContainer from "@/components/AddUserForm/AddUserFormInputContainer.vue";
+import InputContainer from "@/components/UI/InputContainer.vue";
 
 export default {
   name: "AddUserForm",
@@ -63,7 +63,7 @@ export default {
     chiefs: [],
   }),
   components: {
-    AddUserFormInputContainer,
+    InputContainer,
   },
   computed: mapGetters(["allUsers"]),
   mounted() {
