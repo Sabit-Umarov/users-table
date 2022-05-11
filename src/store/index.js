@@ -19,22 +19,23 @@ export default new Vuex.Store({
     },
   },
   state: {
+    keyTableSortedBy: "",
     users: [
       {
         id: 0,
         name: "Michael Buble",
-        phone: "+ 7 843 899 23 23",
+        phone: "+7 978 785 48 99",
         childs: [],
       },
       {
         id: 1,
         name: "Katy Perry",
-        phone: "+ 7 821 299 23 23",
+        phone: "+7 978 785 48 00",
         childs: [
           {
             id: 2,
             name: "Taylor Swift",
-            phone: "+ 7 843 000 12 33",
+            phone: "+7 978 985 48 99",
             childs: [],
           },
         ],
@@ -42,7 +43,7 @@ export default new Vuex.Store({
       {
         id: 3,
         name: "The Weeknd",
-        phone: "+ 7 666 999 66 99",
+        phone: "+7 978 785 48 01",
         childs: [],
       },
     ],
@@ -51,23 +52,26 @@ export default new Vuex.Store({
     allUsers(state) {
       return state.users;
     },
+    getSortKey(state) {
+      return state.keyTableSortedBy;
+    },
   },
   mutations: {
     addNewUser(state, newUser) {
       state.users.push(newUser);
       state.users.pop(newUser);
       let isUserHasParent = false;
-      function addUser(users) {
+      function AddUserForm(users) {
         users.forEach((el) => {
           if (el.name === newUser.chief) {
             isUserHasParent = true;
             el.childs.push(newUser);
           } else {
-            addUser(el.childs);
+            AddUserForm(el.childs);
           }
         });
       }
-      addUser(state.users);
+      AddUserForm(state.users);
       if (!isUserHasParent) {
         state.users.push(newUser);
       }
@@ -76,27 +80,45 @@ export default new Vuex.Store({
       state.users = users;
     },
     sortTable(state, key) {
-      switch (key) {
-        case "name":
-          state.users = state.users.sort((a, b) => {
-            if (a.name > b.name) {
-              return 1;
-            }
-            if (a.name < b.name) {
-              return -1;
-            }
-            return 0;
-          });
-          break;
-        case "phone":
-          state.users = state.users.sort((a, b) => {
-            return (
-              Number(a.phone.slice(1).replace(/\s+/g, "")) -
-              Number(b.phone.slice(1).replace(/\s+/g, ""))
-            );
-          });
-          break;
+      key === state.keyTableSortedBy
+        ? (state.keyTableSortedBy = `reversed ${key}`)
+        : (state.keyTableSortedBy = key);
+      function sortArray(array) {
+        switch (key) {
+          case "name":
+            array = array.sort((a, b) => {
+              if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
+                return key === state.keyTableSortedBy ? 1 : -1;
+              }
+              if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
+                return key === state.keyTableSortedBy ? -1 : 1;
+              }
+              return 0;
+            });
+            array.forEach((el) => {
+              if (el.childs) {
+                sortArray(el.childs);
+              }
+            });
+            break;
+          case "phone":
+            array = array.sort((a, b) => {
+              const first = Number(a.phone.replace(/\s+/g, ""));
+              const second = Number(b.phone.replace(/\s+/g, ""));
+              return key === state.keyTableSortedBy
+                ? first - second
+                : second - first;
+            });
+            array.forEach((el) => {
+              if (el.childs) {
+                sortArray(el.childs);
+              }
+            });
+            break;
+        }
+        return array;
       }
+      sortArray(state.users);
     },
   },
 });

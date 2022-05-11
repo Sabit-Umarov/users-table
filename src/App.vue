@@ -9,29 +9,29 @@
         <v-btn @click="toggleModal(true)" color="primary" class="mt-4"
           >Добавить</v-btn
         >
-        <AddUserModal
+        <ModalUI
           :title="'Добавление пользователя'"
           :isShowModal="isShowModal"
           @handleCloseModal="toggleModal(false)"
         >
-          <AddUser @handleCloseModal="toggleModal(false)" />
-        </AddUserModal>
+          <AddUserForm @handleCloseModal="toggleModal(false)" />
+        </ModalUI>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import UsersTable from "@/components/UsersTable.vue";
-import AddUserModal from "@/components/AddUserModal.vue";
-import AddUser from "@/components/AddUser.vue";
+import UsersTable from "@/components/UsersTable/UsersTable.vue";
+import ModalUI from "@/components/ModalUI.vue";
+import AddUserForm from "@/components/AddUserForm/AddUserForm.vue";
 
 export default {
   name: "App",
   components: {
     UsersTable,
-    AddUserModal,
-    AddUser,
+    ModalUI,
+    AddUserForm,
   },
   data: () => ({
     isShowModal: false,

@@ -7,21 +7,21 @@
       </td>
       <td>{{ user.phone }}</td>
     </tr>
-    <UserRowTree
+    <UsersTableUserRow
       v-for="user in childs"
       :key="user.name"
       :childs="user.childs"
       :user="user"
       :depth="depth + 1"
     >
-    </UserRowTree>
+    </UsersTableUserRow>
   </Fragment>
 </template>
 <script>
 import { Fragment } from "vue-fragment";
 
 export default {
-  name: "UserRowTree",
+  name: "UsersTableUserRow",
   components: {
     Fragment,
   },

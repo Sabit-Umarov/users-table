@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "AddUserModal",
+  name: "ModalUI",
   props: {
     title: String,
     isShowModal: Boolean,

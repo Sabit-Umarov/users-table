@@ -2,21 +2,9 @@
   <v-card width="100%" max-width="600">
     <v-simple-table fixed-header height="600px">
       <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="table-heading text-left" @click="sortTableByKey('name')">
-              Имя
-            </th>
-            <th
-              class="table-heading text-left"
-              @click="sortTableByKey('phone')"
-            >
-              Телефон
-            </th>
-          </tr>
-        </thead>
+        <UsersTableHead />
         <tbody :key="parentKey">
-          <UserRowTree
+          <UsersTableUserRow
             v-for="user in allUsers"
             :key="user.id"
             :user="user"
@@ -32,7 +20,8 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import UserRowTree from "@/components/UserRowTree.vue";
+import UsersTableUserRow from "@/components/UsersTable/UsersTableUserRow.vue";
+import UsersTableHead from "@/components/UsersTable/UsersTableHead.vue";
 
 export default {
   name: "UsersTable",
@@ -40,14 +29,15 @@ export default {
     parentKey: "parent",
   }),
   components: {
-    UserRowTree,
+    UsersTableUserRow,
+    UsersTableHead,
   },
   computed: mapGetters(["allUsers"]),
   mounted() {
     this.loadUsers();
   },
   methods: {
-    ...mapActions(["loadUsers", "sortTableByKey"]),
+    ...mapActions(["loadUsers"]),
   },
   watch: {
     allUsers() {
@@ -56,9 +46,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.table-heading {
-  cursor: pointer;
-}
-</style>
