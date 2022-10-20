@@ -38,8 +38,8 @@
       type="submit"
       light
       width="100%"
-      @click="AddUserForm"
-      :disabled="!user.name || !user.phone"
+      @click="addUserForm"
+      :disabled="isDisableAddButton"
       >Сохранить</v-btn
     >
   </form>
@@ -65,10 +65,15 @@ export default {
   components: {
     InputContainer,
   },
-  computed: mapGetters(["allUsers"]),
-  mounted() {
+  created() {
     this.getChiefs(this.allUsers);
     this.user.id = this.chiefs.length + 1;
+  },
+  computed: { 
+    ...mapGetters(["allUsers"]),
+    isDisableAddButton() {
+      return !this.user.name || !this.user.phone;
+    },
   },
   methods: {
     ...mapActions(["addNewUser"]),
@@ -80,7 +85,7 @@ export default {
         }
       });
     },
-    AddUserForm() {
+    addUserForm() {
       this.addNewUser(this.user);
       this.$emit("handleCloseModal");
       localStorage.setItem("users", JSON.stringify(this.allUsers));

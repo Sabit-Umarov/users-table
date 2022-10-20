@@ -1,5 +1,5 @@
 <template>
-  <v-overlay z-index="10" :value="isShowModal">
+  <v-overlay :z-index="zIndex" :value="isShowModal">
     <div class="modal">
       <header class="modal__header">
         <h2>{{ title }}</h2>
@@ -23,6 +23,10 @@ export default {
   props: {
     title: String,
     isShowModal: Boolean,
+    zIndex: {
+      type: Number,
+      default: 10,
+    },
   },
 };
 </script>

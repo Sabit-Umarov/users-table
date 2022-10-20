@@ -61,17 +61,17 @@ export default new Vuex.Store({
       state.users.push(newUser);
       state.users.pop(newUser);
       let isUserHasParent = false;
-      function AddUserForm(users) {
+      function addUserForm(users) {
         users.forEach((el) => {
           if (el.name === newUser.chief) {
             isUserHasParent = true;
             el.childs.push(newUser);
           } else {
-            AddUserForm(el.childs);
+            addUserForm(el.childs);
           }
         });
       }
-      AddUserForm(state.users);
+      addUserForm(state.users);
       if (!isUserHasParent) {
         state.users.push(newUser);
       }

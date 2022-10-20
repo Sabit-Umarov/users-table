@@ -1,7 +1,7 @@
 <template>
   <th class="table-heading text-left" @click="sortTableByKey(sortKey)">
     {{ title }}
-    <v-icon v-if="isKeysEqual || sortedBy === `reversed ${sortKey}`">{{
+    <v-icon v-if="isShowArrowIcon">{{
       arrowIcon
     }}</v-icon>
   </th>
@@ -20,6 +20,9 @@ export default {
   computed: {
     isKeysEqual() {
       return this.sortedBy === this.sortKey;
+    },
+    isShowArrowIcon() {
+      return this.isKeysEqual || this.sortedBy === `reversed ${this.sortKey}`;
     },
     arrowIcon() {
       return this.isKeysEqual ? "mdi-arrow-down" : "mdi-arrow-up";

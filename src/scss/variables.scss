@@ -3,3 +3,10 @@ html {
 }
 
 $btn-text-transform: "unset";
+
+.v-list-item__title {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
